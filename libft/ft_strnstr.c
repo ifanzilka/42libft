@@ -6,7 +6,7 @@
 /*   By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 20:52:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2020/11/02 20:12:15 by bmarilli         ###   ########.fr       */
+/*   Updated: 2020/11/03 01:37:47 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,35 +103,24 @@
 **	}
 */
 
-static int	ft_strncmp_sp(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	if (n < ft_strlen(s2))
-		return (1);
-	while ((*s1 && *s2) && n)
-	{
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		n--;
-		s1++;
-		s2++;
-	}
-	return (0);
-}
+	size_t	i;
+	size_t	j;
 
-char		*ft_strnstr(const char *str, const char *sbstr, size_t len)
-{
-	if (!sbstr || !str)
+	if (!s1 && !s2)
 		return (NULL);
-	if (!*sbstr)
-		return ((char *)str);
-	if (ft_strlen(str) < ft_strlen(sbstr))
-		return (NULL);
-	while (*str && len)
+	i = 0;
+	if (s2[0] == '\0')
+		return ((char *)s1);
+	while (i < n && s1[i] != '\0')
 	{
-		if (ft_strncmp_sp(str, sbstr, len) == 0)
-			return ((char *)str);
-		str++;
-		len--;
+		j = 0;
+		while ((i + j < n) && s2[j] != '\0' && s1[i + j] == s2[j])
+			j++;
+		if (s2[j] == '\0')
+			return ((char *)s1 + i);
+		i++;
 	}
 	return (NULL);
 }
