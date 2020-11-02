@@ -6,7 +6,7 @@
 /*   By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 20:52:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2020/11/02 18:56:31 by bmarilli         ###   ########.fr       */
+/*   Updated: 2020/11/02 19:26:32 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,65 +71,30 @@
 **	}
 */
 
-/*
-** OLD
-**
-**	char	*ft_strnstr(const char *str, const char *sbstr, size_t len)
-**	{
-**		size_t	i;
-**
-**		i = 0;
-**		if (!sbstr || !str)
-**			return (NULL);
-**		if (*sbstr == '\0')
-**			return ((char*)str);
-**		while (*str && len)
-**		{
-**			if (*str == *sbstr)
-**				break ;
-**			str++;
-**			len--;
-**		}
-**		if (ft_strlen(sbstr) > len)
-**			return (0);
-**		while (*str && i <= ft_strlen(str) - ft_strlen(sbstr))
-**		{
-**			if (ft_strncmp(str, sbstr, ft_strlen(sbstr)) == 0)
-**				return ((char *)str);
-**			str++;
-**			i++;
-**		}
-**		return (0);
-**}
-*/
-
-static int	ft_strncmp_sp(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *str, const char *sbstr, size_t len)
 {
-	if (n < ft_strlen(s2))
-		return (1);
-	while ((*s1 && *s2) && n)
-	{
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		n--;
-		s1++;
-		s2++;
-	}
-	return (0);
-}
+	size_t	i;
 
-char		*ft_strnstr(const char *str, const char *sbstr, size_t len)
-{
-	if (!*sbstr)
-		return ((char *)str);
-	if (ft_strlen(str) < ft_strlen(sbstr))
+	i = 0;
+	if (!sbstr || !str)
 		return (NULL);
+	if (*sbstr == '\0')
+		return ((char*)str);
 	while (*str && len)
 	{
-		if (ft_strncmp_sp(str, sbstr, len) == 0)
-			return ((char *)str);
+		if (*str == *sbstr)
+			break ;
 		str++;
 		len--;
 	}
-	return (NULL);
+	if (ft_strlen(sbstr) > len)
+		return (0);
+	while (*str && i <= ft_strlen(str) - ft_strlen(sbstr))
+	{
+		if (ft_strncmp(str, sbstr, ft_strlen(sbstr)) == 0)
+			return ((char *)str);
+		str++;
+		i++;
+	}
+	return (0);
 }
