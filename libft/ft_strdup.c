@@ -47,6 +47,6 @@ char		*ft_strdup(const char *s1)
 
 	len = ft_strlen(s1);
 	if (!(ptr = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
+		return (NULL);
 	return (ft_strcpy(ptr, s1));
 }
