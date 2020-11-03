@@ -6,7 +6,7 @@
 #    By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/29 23:36:03 by bmarilli          #+#    #+#              #
-#    Updated: 2020/11/02 12:51:03 by bmarilli         ###   ########.fr        #
+#    Updated: 2020/11/03 22:46:01 by bmarilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 SRC =    ft_strdup.c 		ft_bzero.c 			ft_isalpha.c  	ft_isdigit.c  \
 		   ft_memccpy.c  		ft_memcmp.c   		ft_memmove.c  	ft_strchr.c   \
@@ -24,38 +24,39 @@ SRC =    ft_strdup.c 		ft_bzero.c 			ft_isalpha.c  	ft_isdigit.c  \
    		ft_strlen.c   		ft_strnstr.c  		ft_tolower.c 	ft_calloc.c   \
    		ft_strdup.c 		ft_substr.c 		ft_strjoin.c 	ft_strtrim.c  \
    		ft_split.c 			ft_itoa.c 			ft_strmapi.c   	ft_putchar_fd.c\
-   		ft_putstr_fd.c 	ft_putendl_fd.c 	ft_putnbr_fd.c 	
- 
+   		ft_putstr_fd.c 	ft_putendl_fd.c 	ft_putnbr_fd.c
+
 BONSRC =   ft_lstnew.c \
          ft_lstadd_front.c    ft_lstadd_front.c    ft_lstadd_back.c ft_lstsize.c\
          ft_lstlast.c         ft_lstdelone.c       ft_lstclear.c  ft_lstiter.c\
          ft_lstmap.c
 
-RM = rm -f
-
 OBJ = $(SRC:.c=.o)
 
-BONOBJ = $(BONSRC:.c=.o)
+BONUS_OBJ = $(BONSRC:.c=.o)
 
-$(NAME): $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
+FLAGS = -Wall -Wextra -Werror -c
+
+%.o: %.c
+	gcc $(FLAGS) $< -o $@
 
 all: $(NAME)
 
-bonus : all $(BONSRC)
-	$(CC) $(CFLAGS) -c $(BONSRC)
-	ar -rc $(NAME)  $(BONOBJ)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+bonus: $(BONUS_OBJ)
+	ar rcs $(NAME) $(BONUS_OBJ)
 
 clean:
-	$(RM) $(OBJ) $(BONOBJ)
+	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-norm: 
+norm:
 	norminette *.c *.h
 
 .PHONY: clean fclean
