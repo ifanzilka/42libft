@@ -6,7 +6,7 @@
 #    By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/29 23:36:03 by bmarilli          #+#    #+#              #
-#    Updated: 2020/11/04 19:22:13 by bmarilli         ###   ########.fr        #
+#    Updated: 2020/11/04 22:12:55 by bmarilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 bonus: $(BONUS_OBJ)
 	ar rcs $(NAME) $(BONUS_OBJ)
