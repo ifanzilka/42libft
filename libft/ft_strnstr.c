@@ -6,7 +6,7 @@
 /*   By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 20:52:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2020/11/03 01:37:47 by bmarilli         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:30:00 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	size_t	i;
 	size_t	j;
 
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
 	if (s2[0] == '\0')
